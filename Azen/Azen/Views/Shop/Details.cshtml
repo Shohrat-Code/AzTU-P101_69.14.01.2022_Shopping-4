@@ -1,0 +1,482 @@
+﻿@model Product
+<div class="site page-content woocommerce">
+
+    <div class="breadcrumb-contact-us breadcrumb-section section-box">
+        <div class="container breadcrumb-inner">
+            <div class="breadcrumbs-wrapper">
+                <ul class="phys-breadcrumb">
+                    <li><a href="index.html" class="home">Home</a></li>
+                    <li><a href="shop.html" class="home">Shop</a></li>
+                    <li>Product Simple</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <div class="content-area shop-single-v1-section container">
+        <div class="product">
+            <div class="product-top-image">
+                <div class="images">
+                    <div id="slider" class="flexslider">
+                        <div class="flex-viewport">
+                            <ul class="slides">
+                                @foreach (var item in Model.ColorToProducts)
+                                {
+                                    foreach (var item2 in item.ProductImages)
+                                    {
+                                        <li>
+                                            <a href="#" class="swipebox" title="">
+                                                <img src="~/Uploads/@item2.Image"
+                                                     class="attachment-shop_single size-shop_single wp-post-image" alt="#">
+                                            </a>
+                                        </li>
+                                    }
+                                }
+                            </ul>
+                        </div>
+                    </div>
+                    <div id="carousel" class="flexslider thumbnail_product">
+                        <div class="flex-viewport">
+                            <ul class="slides">
+                                @{ int i = 1;}
+                                @foreach (var item in Model.ColorToProducts)
+                                {
+                                    foreach (var item2 in item.ProductImages)
+                                    {
+                                        <li class="@(i==1?"flex-active-slide":"")">
+                                            <img src="~/Uploads/@item2.Image"
+                                                 class="attachment-thumbnail size-thumbnail wp-post-image" alt="#">
+                                        </li>
+                                    }
+
+                                    i++;
+                                }
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <div class="summary entry-summary">
+                    <h1 class="product_title entry-title">@Model.Name</h1>
+                    <span class="rating">
+                        <span class="star-rating">
+                            <i class="fa fa-star "></i> <i class="fa fa-star "></i> <i class="fa fa-star "></i> <i class="fa fa-star "></i> <i class="fa fa-star-o "></i>
+                        </span>
+                        <span class="number-review">( 2 customer reviews )</span>
+                    </span>
+                    <p class="price">
+                        <span class="woocommerce-Price-amount amount">
+                            <span class="woocommerce-Price-currencySymbol">$</span>@Model.ColorToProducts.FirstOrDefault().SizeColorToProducts.FirstOrDefault().Price
+                        </span>
+                    </p>
+                    <div class="woocommerce-product-details__short-description">
+                        <p>@Model.About</p>
+                    </div>
+                    <form class="cart" action="#" method="post"
+                          enctype="multipart/form-data">
+                        <div>
+                            <div class="btn-group">
+                                <button type="button" class="prev btn ">-</button>
+                                <button type="button" class="show-number btn ">1</button>
+                                <button type="button" class="next btn ">+</button>
+                            </div>
+                            <div class="btn-add-to-cart">
+                                <a href="#" class="btn add-to-cart">ADD TO CART</a>
+                            </div>
+                        </div>
+                    </form>
+                    <div class="yith-wcwl-add-button">
+                        <a href="wishlist.html"><i class="fa fa-heart"></i> <span>Add to Wishlist</span></a>
+                    </div>
+                    <div class="product_meta">
+                        <span class="sku_wrapper">SKU: <span class="sku">@Model.SKU</span></span>
+                        <span class="posted_in">
+                            Categories:
+                            <a href="shop.html" rel="tag">@Model.ProductCategory.Name</a>,
+                        </span>
+                        <span class="tagged_as">
+                            Tag:
+                            @foreach (var item in Model.ProductTagToProducts)
+                            {
+                                <a href="shop.html" rel="tag">@item.ProductTag.Name</a>
+                            }
+                        </span>
+
+                    </div>
+                    <div class="product-share">
+                        <span>Share </span>
+                        <div class="item-social">
+                            <a class="face" title="Share on Facebook"
+                               href="http://www.facebook.com/sharer.php?">#facebook</a>
+                            <a class="twitter" title="Tweet this!"
+                               href="https://twitter.com/intent/tweet?">#twitter</a>
+                            <a class="google"
+                               href="https://plus.google.com/share?url=">#google</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!--tabs-->
+            <div class="woocommerce-tabs wc-tabs-wrapper">
+                <ul class="nav nav-tabs tabs" role="tablist">
+                    <li class="nav-item">
+                        <a href="#tab-description" class="nav-link active" aria-controls="tab-description"
+                           data-toggle="tab" id="tab-title-description" role="tab">Description </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="#tab-additional_information" class="nav-link" data-toggle="tab"
+                           id="tab-title-additional_information" role="tab"
+                           aria-controls="tab-additional_information">
+                            Additional
+                            information
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="#tab-reviews" class="nav-link" data-toggle="tab" id="tab-title-reviews" role="tab"
+                           aria-controls="tab-reviews">Reviews (2) </a>
+                    </li>
+                </ul>
+                <div class="tab-content">
+                    <div class="tab-pane fade show active" id="tab-description" role="tabpanel"
+                         aria-labelledby="tab-title-description">
+                        <p>
+                            Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum
+                            has
+                            been the industry’s standard dummy text ever since the 1500s, when an unknown printer
+                            took a
+                            galley of type and scrambled it to make a type specimen book
+                        </p>
+                    </div>
+                    <div class="tab-pane fade "
+                         id="tab-additional_information" role="tabpanel"
+                         aria-labelledby="tab-title-additional_information">
+
+                        <h2>Additional information</h2>
+
+                        <table class="woocommerce-product-attributes shop_attributes">
+                            <tbody>
+                                <tr class="woocommerce-product-attributes-item woocommerce-product-attributes-item--attribute_pa_brand">
+                                    <th class="woocommerce-product-attributes-item__label">BRAND</th>
+                                    <td class="woocommerce-product-attributes-item__value">
+                                        <p>Champion, Supreme</p>
+                                    </td>
+                                </tr>
+                                <tr class="woocommerce-product-attributes-item woocommerce-product-attributes-item--attribute_pa_color">
+                                    <th class="woocommerce-product-attributes-item__label">COLOR</th>
+                                    <td class="woocommerce-product-attributes-item__value">
+                                        <p>
+                                            Black, Light blue, White,
+                                            Yellow
+                                        </p>
+                                    </td>
+                                </tr>
+                                <tr class="woocommerce-product-attributes-item woocommerce-product-attributes-item--attribute_pa_size">
+                                    <th class="woocommerce-product-attributes-item__label">SIZE</th>
+                                    <td class="woocommerce-product-attributes-item__value">
+                                        <p>L, M, S, XL</p>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div class="tab-pane fade" id="tab-reviews" role="tabpanel" aria-labelledby="tab-title-reviews">
+                        <div id="reviews" class="woocommerce-Reviews">
+                            <div id="comments">
+                                <h2 class="woocommerce-Reviews-title">
+                                    2 reviews for <span>Hyper shoe</span>
+                                </h2>
+
+                                <ol class="commentlist">
+                                    <li class="review">
+
+                                        <div class="comment_container">
+                                            <div class="avatar">
+                                                <img alt="" src="images/outeam/avatar.png">
+                                            </div>
+                                            <div class="comment-text">
+                                                <p class="meta">
+                                                    <strong class="woocommerce-review__author">Laura </strong>
+                                                    <span class="woocommerce-review__dash">–</span>
+                                                    <span class="woocommerce-review__published-date">
+                                                        23 - October -
+                                                        2019
+                                                    </span>
+                                                </p>
+                                                <div class="star-rating">
+                                                    <span>
+                                                        <i class="fa fa-star "></i> <i class="fa fa-star "></i>
+                                                        <i class="fa fa-star "></i> <i class="fa fa-star "></i>
+                                                        <i class="fa fa-star-o "></i>
+                                                    </span>
+                                                </div>
+                                                <div class="description">
+                                                    <p>
+                                                        Lorem ipsum dolor sit amet, consectetur
+                                                        adipiscing elit, sed do eiusmod tempor incididunt ut labore et
+                                                        dolore magna aliqua. Ut enim ad minim veniam, quis nostrud
+                                                        exercitation ullamco laboris nisi ut aliquip ex ea commodo
+                                                        consequat
+                                                    </p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </li><!-- #comment-## -->
+                                    <li class="review">
+
+                                        <div class="comment_container">
+                                            <div class="avatar">
+                                                <img alt="" src="images/outeam/avatar.png">
+                                            </div>
+                                            <div class="comment-text">
+                                                <p class="meta">
+                                                    <strong class="woocommerce-review__author">Jessica </strong>
+                                                    <span class="woocommerce-review__dash">–</span>
+                                                    <span class="woocommerce-review__published-date">
+                                                        23 - October -
+                                                        2019
+                                                    </span>
+                                                </p>
+                                                <div class="star-rating">
+                                                    <span>
+                                                        <i class="fa fa-star "></i> <i class="fa fa-star "></i>
+                                                        <i class="fa fa-star "></i> <i class="fa fa-star "></i>
+                                                        <i class="fa fa-star "></i>
+                                                    </span>
+                                                </div>
+                                                <div class="description">
+                                                    <p>
+                                                        Lorem ipsum dolor sit amet, consectetur
+                                                        adipiscing elit, sed do eiusmod tempor incididunt ut labore
+                                                        et
+                                                        dolore magna aliqua. Ut enim ad minim veniam, quis nostrud
+                                                        exercitation ullamco laboris nisi ut aliquip ex ea commodo
+                                                        consequat
+                                                    </p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </li><!-- #comment-## -->
+                                </ol>
+
+                            </div>
+
+                            <div id="review_form_wrapper">
+                                <div id="review_form">
+                                    <div id="respond" class="comment-respond">
+                                        <form action="#" method="post"
+                                              id="commentform" class="comment-form" novalidate="">
+                                            <p class="comment-notes">
+                                                <span id="email-notes">Your email address will not be published.</span>
+                                                Required fields are marked <span class="required">*</span>
+                                            </p>
+                                            <p class="comment-form-author">
+                                                <label for="author">
+                                                    Name&nbsp;<span class="required">*</span>
+                                                </label>
+                                                <input id="author" name="author" type="text" value="" size="30"
+                                                       required="">
+                                            </p>
+                                            <p class="comment-form-email">
+                                                <label for="email">
+                                                    Email&nbsp;<span class="required">*</span>
+                                                </label>
+                                                <input id="email" name="email" type="email" value="" size="30"
+                                                       required="">
+                                            </p>
+                                            <p class="comment-form-cookies-consent">
+                                                <input id="wp-comment-cookies-consent"
+                                                       name="wp-comment-cookies-consent"
+                                                       type="checkbox" value="yes">
+                                                <label for="wp-comment-cookies-consent">
+                                                    Save my name, email, and
+                                                    website in
+                                                    this browser for the next time I comment.
+                                                </label>
+                                            </p>
+                                            <div class="comment-form-rating">
+                                                <label>Your rating</label>
+                                                <p class="stars">
+                                                    <span></span><span></span><span></span><span></span><span></span>
+                                                </p>
+
+                                            </div>
+                                            <p class="comment-form-comment">
+                                                <label for="comment">
+                                                    Your review&nbsp;<span class="required">*</span>
+                                                </label>
+                                                <textarea id="comment" name="comment" cols="45" rows="8"
+                                                          required="">
+                                                    </textarea>
+                                            </p>
+                                            <p class="form-submit">
+                                                <input name="submit" type="submit" id="submit"
+                                                       class="submit" value="Submit">
+                                            </p>
+                                        </form>
+                                    </div><!-- #respond -->
+                                </div>
+                            </div>
+                            <div class="clear"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!--end tabs-->
+            <section class="related products">
+                <h2>Related products</h2>
+                <ul class="products columns-4">
+                    <li class="product">
+                        <div class="inner-item-product">
+                            <div class="product-image">
+                                <span class="onsale">Sale</span>
+                                <a href="simple-product.html" class="wp-post-image">
+                                    <img src="images/product/product16.jpg" alt="">
+                                    <img src="images/product/product15.jpg"
+                                         class="product-change-images"
+                                         alt="">
+                                </a>
+                                <div class="box-hover">
+                                    <a href="javascript:void(0)" class="quick-view" data-toggle="modal"
+                                       data-target="#quickview">
+
+                                    </a>
+                                    <div class="yith-wcwl-add-to-wishlist">
+                                        <a href="#"
+                                           class="add_to_wishlist single_add_to_wishlist">
+                                        </a>
+                                    </div>
+                                    <a href="#" data-quantity="1"
+                                       class="button product_type_simple add_to_cart_button ajax_add_to_cart"></a>
+                                </div>
+                            </div>
+                            <div class="wrapper-content-item">
+                                <h2 class="woocommerce-loop-product_title">
+                                    <a href="simple-product.html">
+                                        Weaver hat
+                                        v2
+                                    </a>
+                                </h2>
+                                <span class="price">
+                                    <del>
+                                        <span class="woocommerce-Price-amount amount">
+                                            <span class="woocommerce-Price-currencySymbol">$</span>40
+                                        </span>
+                                    </del> <ins>
+                                        <span class="woocommerce-Price-amount amount">
+                                            <span class="woocommerce-Price-currencySymbol">$</span>35
+                                        </span>
+                                    </ins>
+                                </span>
+                            </div>
+                        </div>
+                    </li>
+                    <li class="product">
+                        <div class="inner-item-product">
+                            <div class="product-image">
+                                <a href="simple-product.html" class="wp-post-image">
+                                    <img src="images/product/product15.jpg" alt="">
+                                    <img src="images/product/product16.jpg"
+                                         class="product-change-images"
+                                         alt="">
+                                </a>
+                                <div class="box-hover">
+                                    <a href="javascript:void(0)" class="quick-view" data-toggle="modal"
+                                       data-target="#quickview">
+
+                                    </a>
+                                    <div class="yith-wcwl-add-to-wishlist">
+                                        <a href="#"
+                                           class="add_to_wishlist single_add_to_wishlist">
+                                        </a>
+                                    </div>
+                                    <a href="#" data-quantity="1"
+                                       class="button product_type_simple add_to_cart_button ajax_add_to_cart"></a>
+                                </div>
+                            </div>
+                            <div class="wrapper-content-item">
+                                <h2 class="woocommerce-loop-product_title">
+                                    <a href="simple-product.html">Weaver hat v2</a>
+                                </h2>
+                                <span class="price">
+                                    <span class="woocommerce-Price-amount amount">
+                                        <span class="woocommerce-Price-currencySymbol">$</span>115
+                                    </span>
+                                </span>
+                            </div>
+                        </div>
+                    </li>
+                    <li class="product">
+                        <div class="inner-item-product">
+                            <div class="product-image">
+                                <a href="simple-product.html" class="wp-post-image">
+                                    <img src="images/product/Rose-short.jpg" alt="">
+                                    <img src="images/product/Pastel-Jogger.jpg"
+                                         class="product-change-images"
+                                         alt="">
+                                </a>
+                                <div class="box-hover">
+                                    <a href="javascript:void(0)" class="quick-view" data-toggle="modal"
+                                       data-target="#quickview">
+
+                                    </a>
+                                    <div class="yith-wcwl-add-to-wishlist">
+                                        <a href="#"
+                                           class="add_to_wishlist single_add_to_wishlist">
+                                        </a>
+                                    </div>
+                                    <a href="#" data-quantity="1"
+                                       class="button product_type_simple add_to_cart_button ajax_add_to_cart"></a>
+                                </div>
+                            </div>
+                            <div class="wrapper-content-item">
+                                <h2 class="woocommerce-loop-product_title">
+                                    <a href="simple-product.html">Rose Short</a>
+                                </h2>
+                                <span class="price">
+                                    <span class="woocommerce-Price-amount amount">
+                                        <span class="woocommerce-Price-currencySymbol">$</span>115
+                                    </span>
+                                </span>
+                            </div>
+                        </div>
+                    </li>
+                    <li class="product">
+                        <div class="inner-item-product">
+                            <div class="product-image">
+                                <a href="simple-product.html" class="wp-post-image">
+                                    <img src="images/product/sneaker3.jpg" alt="">
+                                    <img src="images/product/sneaker.jpg" class="product-change-images"
+                                         alt="">
+                                </a>
+                                <div class="box-hover">
+                                    <a href="javascript:void(0)" class="quick-view" data-toggle="modal"
+                                       data-target="#quickview">
+
+                                    </a>
+                                    <div class="yith-wcwl-add-to-wishlist">
+                                        <a href="#"
+                                           class="add_to_wishlist single_add_to_wishlist">
+                                        </a>
+                                    </div>
+                                    <a href="#" data-quantity="1"
+                                       class="button product_type_simple add_to_cart_button ajax_add_to_cart"></a>
+                                </div>
+                            </div>
+                            <div class="wrapper-content-item">
+                                <h2 class="woocommerce-loop-product_title">
+                                    <a href="simple-product.html">Sneaker v2</a>
+                                </h2>
+                                <span class="price">
+                                    <span class="woocommerce-Price-amount amount">
+                                        <span class="woocommerce-Price-currencySymbol">$</span>60
+                                    </span>
+                                </span>
+                            </div>
+                        </div>
+                    </li>
+                </ul>
+            </section>
+        </div>
+    </div>
+
+</div><!-- #content -->
